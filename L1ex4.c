@@ -48,42 +48,42 @@ bloco* criarMuro(int n, int alvo) {
 
 int buscarAlvo(bloco* inic, int n, int alvo){
     bloco* pont = inic;
+    bloco* pont2 = inic;
     int passos = n/2;
-    if(pont->num == alvo) // checa o alvo na posicao inicial
+    if(pont->num == alvo){
+        printf("\nAlvo encontrado na posicao %d", pont->num); // checa o alvo na posicao inicial
         return 0;
-    for(int i = 1; i<passos+1;i++){
-        for(int d = 0; d<i;d++){
-            pont = pont->prox;
-            if(pont->num == alvo)
-                return i;
-            pont = inic;
-            pont = pont->ant;
-            if(pont->num == alvo)
-                return -i;
-            pont = inic;
-        }
-
     }
+    for(int i = 1; i<passos+1; i++){
+            pont = pont->ant;
+            pont2 = pont2->prox;
+            if(pont2->num == alvo){
+                printf("\nAlvo encontrado na posicao %d", i);
+                return i;
+            }
+            else if(pont->num == alvo){
+                printf("\nAlvo encontrado na posicao %d", -i);
+                return -i;
+            }
+    }
+    printf("\nAlvo nao encontrado :( ");
+    return 0;
 }
 
 
 int main(){
     srand(time(NULL));
-    int n = 6;
+    int n = 5;
     int alvo = 0;
     bloco* inic = criarMuro(n, alvo);
-    
-    int posicao = buscarAlvo(inic, n, alvo);
-
-
-
-    // imprimir
     bloco* pont = inic;
-    printf("---- Muro Infinito ----\n    n = %d  alvo = %d\n\nMuro: ", n, alvo);
+    printf("\n---- Muro Infinito ----\n    n = %d  alvo = %d\nMuro: ", n, alvo);
     for(int i = 0; i<n;i++){
         printf("|%d| ",pont->num);
         pont = pont->prox;
     }
+    int posicao = buscarAlvo(inic, n, alvo);
+    printf("\n-----------------------");
     return 0;
 }
 
