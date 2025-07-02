@@ -72,8 +72,6 @@ void rainha(int tabuleiro[], int n, int linha){ // funcao recursiva que posicion
 
             tabuleiro[linha] = -1;
         }
-//        else
-//            tabuleiro[linha] = -2;
     }
 }
 
